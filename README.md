@@ -1,6 +1,8 @@
 # WhatsByte - Healthcare Management API
 
-A Django REST API for managing doctor-patient relationships in a healthcare system.
+A Django REST API designed to manage doctor-patient relationships within a healthcare system.
+
+🔧 Features
 
 ## Features
 
@@ -22,7 +24,7 @@ A Django REST API for managing doctor-patient relationships in a healthcare syst
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/DarkIce000/whatsbyte.git
+git clone https://github.com/riteshaity/whatsbytes-assignment.git
 cd whatsbyte
 ```
 
