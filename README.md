@@ -1,147 +1,127 @@
-WhatsByte - Healthcare Management API
-A Django REST API designed to manage doctor-patient relationships within a healthcare system.
+# WhatsByte - Healthcare Management API
 
-🔧 Features
-JWT-based Authentication
+A Django REST API for managing doctor-patient relationships in a healthcare system.
 
-Admin user control
+## Features
 
-Doctor management
+- JWT Authentication
+- Admin user management
+- Doctor management
+- Patient management
+- Doctor-Patient mapping system
 
-Patient management
+## Tech Stack
 
-Doctor–Patient mapping system
+- Python 3.x
+- Django 5.2.1
+- Django REST Framework 3.16.0
+- PostgreSQL
+- JWT Authentication (Simple JWT)
 
-🛠️ Tech Stack
-Python 3.x
+## Installation
 
-Django 5.2.1
-
-Django REST Framework 3.16.0
-
-PostgreSQL
-
-JWT Authentication (Simple JWT)
-
-🚀 Getting Started
-1. Clone the repository
-bash
-Copy
-Edit
+1. Clone the repository:
+```bash
 git clone https://github.com/DarkIce000/whatsbyte.git
 cd whatsbyte
-2. Set up a virtual environment
-bash
-Copy
-Edit
+```
+
+2. Create and activate a virtual environment:
+```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-3. Install dependencies
-bash
-Copy
-Edit
-pip install -r requirements.txt
-4. Configure environment variables
-Create a .env file in the root directory with the following:
+```
 
-ini
-Copy
-Edit
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+4. Configure environment variables:
+Create a `.env` file in the root directory with:
+```
 NAME = "postgres"
 USER = "postgres"
 PASSWORD = "admin"
 HOST = "localhost"
 PORT = "5432"
-5. Apply migrations
-bash
-Copy
-Edit
+```
+
+5. Run migrations:
+```bash
 python manage.py migrate
-6. Create a superuser
-bash
-Copy
-Edit
+```
+
+6. Create a superuser:
+```bash
 python manage.py createsuperuser
-7. Start the development server
-bash
-Copy
-Edit
+```
+
+7. Run the development server:
+```bash
 python manage.py runserver
-📌 API Endpoints
-🔐 Authentication
-POST /api/admin_register/ – Register an admin
+```
 
-POST /api/token/ – Get JWT token pair
+## API Endpoints
 
-POST /api/token/refresh/ – Refresh access token
+### Authentication
+- `POST /api/admin_register/` - Register new admin user
+- `POST /api/token/` - Obtain JWT token pair
+- `POST /api/token/refresh/` - Refresh JWT token
 
-👤 Admin Management
-GET/PUT/PATCH/DELETE /api/admins/<id>/ – Manage admin users
+### Admin Management
+- `GET/PUT/PATCH/DELETE /api/admins/<id>/` - Manage admin users
 
-🧑‍⚕️ Doctors
-GET /api/doctors/ – List all doctors
+### Patients
+- `GET /api/patients/` - List all patients
+- `POST /api/patients/` - Create new patient
+- `GET/PUT/PATCH/DELETE /api/patients/<id>/` - Manage individual patient
 
-POST /api/doctors/ – Add a doctor
+### Doctors
+- `GET /api/doctors/` - List all doctors
+- `POST /api/doctors/` - Create new doctor
+- `GET/PUT/PATCH/DELETE /api/doctors/<id>/` - Manage individual doctor
 
-GET/PUT/PATCH/DELETE /api/doctors/<id>/ – Manage a doctor
+### Doctor-Patient Mappings
+- `GET /api/mappings/` - List all mappings
+- `POST /api/mappings/` - Create new mapping
+- `GET/PUT/PATCH/DELETE /api/mappings/<id>/` - Manage individual mapping
 
-🧑 Patients
-GET /api/patients/ – List all patients
+## Authentication
 
-POST /api/patients/ – Add a patient
+The API uses JWT (JSON Web Token) authentication. To access protected endpoints:
 
-GET/PUT/PATCH/DELETE /api/patients/<id>/ – Manage a patient
-
-🔗 Doctor-Patient Mapping
-GET /api/mappings/ – List all mappings
-
-POST /api/mappings/ – Create a mapping
-
-GET/PUT/PATCH/DELETE /api/mappings/<id>/ – Manage a mapping
-
-🔒 Authentication Guide
-This project uses JWT for secure authentication.
-
-Get a token pair
-
-bash
-Copy
-Edit
+1. Obtain token pair:
+```bash
 curl -X POST http://localhost:8000/api/token/ \
      -H "Content-Type: application/json" \
      -d '{"username": "admin", "password": "password"}'
-Use the token
+```
 
-bash
-Copy
-Edit
+2. Use the access token in subsequent requests:
+```bash
 curl http://localhost:8000/api/doctors/ \
      -H "Authorization: Bearer <your-access-token>"
-🧬 Data Models
-🧑‍💼 User
-Extends Django's AbstractUser
+```
 
-Used for admin authentication
+## Models
 
-🧑‍⚕️ Doctor
-name: CharField
+### User
+- Extended Django's AbstractUser
+- Used for admin authentication
 
-age: SmallIntegerField
+### Doctor
+- name (CharField)
+- age (SmallIntegerField)
+- address (TextField)
+- speciality (CharField)
 
-address: TextField
+### Patient
+- name (CharField)
+- age (SmallIntegerField)
+- address (TextField)
 
-speciality: CharField
-
-🧑 Patient
-name: CharField
-
-age: SmallIntegerField
-
-address: TextField
-
-🔗 Mapping
-doctor: ForeignKey to Doctor
-
-patient: ForeignKey to Patient
-
-assigned_at: DateTimeField (auto_now_add)
+### Mapping
+- doctor (ForeignKey to Doctor)
+- patient (ForeignKey to Patient)
+- assigned_at (DateTimeField, auto_now_add)
