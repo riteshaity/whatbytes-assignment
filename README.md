@@ -25,7 +25,7 @@ A Django REST API designed to manage doctor-patient relationships within a healt
 1. Clone the repository:
 ```bash
 git clone https://github.com/riteshaity/whatsbytes-assignment.git
-cd whatsbyte
+cd whatsbytes-assignment
 ```
 
 2. Create and activate a virtual environment:
