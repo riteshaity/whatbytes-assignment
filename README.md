@@ -1,4 +1,4 @@
-# WhatsByte - Healthcare Management API
+#  Healthcare Management API
 
 A Django REST API designed to manage doctor-patient relationships within a healthcare system.
 
